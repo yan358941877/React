@@ -5,6 +5,63 @@
     <meta charset="UTF-8">
     <title>webpack 2 demo</title>
     <!--<script src="https://unpkg.com/lodash@4.16.6"></script>-->
+    <style>
+        body,
+        div,
+        table,
+        thead,
+        tbody,
+        tr,
+        td,
+        th {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .table-widget {
+            border-spacing: 0;
+            margin: 40px auto;
+        }
+        
+        .table-widget th {
+            width: 6em;
+            height: 2.5em;
+            line-height: 2.5em;
+            background: #444;
+            color: #fff;
+            border: 1px solid #aaa;
+            position: relative;
+        }
+        
+        .table-widget td {
+            width: 6em;
+            height: 2.5em;
+            line-height: 2.5em;
+            text-align: center;
+            border: 1px solid #aaa;
+            border-top: none;
+        }
+        
+        .table-widget .up {
+            display: inline-block;
+            border: 5px solid transparent;
+            border-bottom: 5px solid #fff;
+            position: absolute;
+            top: 0.3em;
+            right: 0.5em;
+            cursor: pointer;
+        }
+        
+        .table-widget .down {
+            display: inline-block;
+            border: 5px solid transparent;
+            border-top: 5px solid #fff;
+            position: absolute;
+            bottom: 0.3em;
+            right: 0.5em;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
