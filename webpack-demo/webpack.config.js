@@ -8,9 +8,9 @@ module.exports = {
     }
     /*,
         plugins: [
-        	new UglifyJSPlugin({
-        		test: /\.js$/,
-        		comments: false
-        	})
+            new UglifyJSPlugin({
+                test: /\.js$/,
+                comments: false
+            })
         ]*/
 }
