@@ -2,27 +2,40 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    position: relative;
 }
 
 #root,
 #root02 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     background-image: linear-gradient(to right, blue, red, blue, red, blue);
     -webkit-background-clip: text;
     color: transparent;
     background-size: 200% 100%;
-    animation: title-color 3s infinite linear;
 }
 
-@keyframes title-color {
+#root {
+    margin-top: 50px;
+    animation: root01-color 3s infinite linear;
+}
+
+#root02 {
+    margin-top: 20px;
+    animation: root02-color 3s infinite linear;
+}
+
+@keyframes root01-color {
     0% {
         background-position: 100% 0%;
     }
     100% {
         background-position: 0% 0%;
+    }
+}
+
+@keyframes root02-color {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
     }
 }
