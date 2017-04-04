@@ -8,11 +8,10 @@ function component() {
     ////return element;
 
     var element = $('<div></div>');
-    element.html(_.join(['Hello', 'webpack'], ' '));
+    element.html(_.join(['Hi', 'webpack'], ' '));
     return element.get(0);
 }
 
 document.body.appendChild(component());
 console.log(foo);
 console.log(foo());
-
