@@ -1,5 +1,23 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+#root,
+#root02 {
+    background-image: linear-gradient(to right, blue, red, blue, red, blue);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    animation: title-color 3s infinite linear;
+}
+
+@keyframes title-color {
+    0% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
 }
