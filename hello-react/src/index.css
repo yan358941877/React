@@ -6,6 +6,7 @@ body {
 
 #root,
 #root02 {
+    text-align: center;
     background-image: linear-gradient(to right, blue, red, blue, red, blue);
     -webkit-background-clip: text;
     color: transparent;
