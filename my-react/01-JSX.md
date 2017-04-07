@@ -1,6 +1,7 @@
 ### JSX
 
 * JSX是JavaScript的一种语法拓展,我们在React中用它来描述UI的样子.
+* JSX结合了JavaScript和XML
 
 ### 在JSX中嵌入表达式
 
@@ -17,11 +18,11 @@ const user = {
 };
 
 // {formatName(user)}会自动执行里面的内容,得到 "Harper Perez"
-const element = {
+const element = (
 	<h1>
 		Hello, {formatName(user)}! 
 	</h1>
-};
+);
 
 ReactDOM.render{
 	element,
