@@ -1,38 +1,32 @@
 .TodoApp {
-    background-image: linear-gradient(to right, blue, red, blue, red, blue);
-    -webkit-background-clip: text;
-    color: transparent;
-    background-size: 200% 100%;
-    animation: root01-color 3s infinite linear;
+    width: 900px;
+    margin: 40px auto;
+    border: 1px solid #aaa;
 }
 
 .TodoApp h1 {
     font-size: 2em;
+    line-height: 2em;
+    border-bottom: 1px solid #aaa;
+    text-align: center;
 }
 
 .TodoInput input {
-    width: 300px;
-    height: 20px;
+    display: block;
+    width: 600px;
+    margin: 30px auto;
+    font-size: 1.25em;
+    height: 2rem;
+}
+
+.TodoApp ul {
+    margin: 30px auto;
 }
 
 .TodoItem {
-    color: #000;
-}
-
-@keyframes root01-color {
-    0% {
-        background-position: 100% 0%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
-}
-
-@keyframes root02-color {
-    0% {
-        background-position: 0% 0%;
-    }
-    100% {
-        background-position: 100% 0%;
-    }
+    width: 600px;
+    margin: 20px auto;
+    font-size: 1.25em;
+    line-height: 2em;
+    border: 1px dashed #aaa;
 }

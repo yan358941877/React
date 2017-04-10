@@ -24,7 +24,6 @@ class TodoApp extends React.Component {
     return (
       
       <div className="TodoApp">
-        
         <h1>我的待办</h1>
         <TodoInput />
         <ul>
