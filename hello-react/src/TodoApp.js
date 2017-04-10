@@ -10,11 +10,7 @@ class TodoApp extends React.Component {
     super(props);
     this.state = {
       newTodo: '',
-      todoList: [
-        {id:1, title:'第一个待办'},
-        {id:2, title:'第二个待办'},
-        {id:3, title:'第三个待办'}
-      ]
+      todoList: []
     };
     this.addTodo = this.addTodo.bind(this);
   }
@@ -26,7 +22,7 @@ class TodoApp extends React.Component {
       
       <div className="TodoApp">
         <h1>我的待办</h1>
-        <TodoInput content={this.state.newTod} onSubmit={this.addTodo}/>
+        <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
         <ul>
             {todos}
         </ul>
@@ -39,7 +35,7 @@ class TodoApp extends React.Component {
     this.state.todoList.push({
       id: this.state.todoList.length+1,
       title: event.target.value,
-      status: null,
+      status: 0,
       deleted: false
     });
 
