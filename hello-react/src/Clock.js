@@ -19,8 +19,11 @@ class Clock extends React.Component{
     constructor(props) {
         super(props);
         this.state = {date: new Date()};
+        
     }
-
+    componentWillMount() {
+       
+    }
     componentDidMount(){
         this.timerID = setInterval(
             () => this.tick(),

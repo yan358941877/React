@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Welcome from './Welcome';
-import Clock from './Clock';
 import './index.css';
 
-ReactDOM.render(
-    <Welcome name="闫鑫"/>,
+ReactDOM.render( <
+    App / > ,
     document.getElementById('root')
 );
 // ReactDOM.render( 
@@ -28,8 +26,3 @@ ReactDOM.render(
 //     );
 // }
 // setInterval(tick, 1000);
-
-ReactDOM.render(
-    <Clock />,
-    document.getElementById("root02")
-)
