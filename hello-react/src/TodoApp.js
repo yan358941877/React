@@ -9,7 +9,7 @@ class TodoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newTodo: 'test',
+      newTodo: '',
       todoList: [
         {id:1, title:'第一个待办'},
         {id:2, title:'第二个待办'},
@@ -19,13 +19,13 @@ class TodoApp extends React.Component {
   }
   render() {
     let todos = this.state.todoList.map(function(item, index){
-      return <TodoItem title={item.title} />;
+      return <TodoItem todo={item} />;
     });
     return (
       
       <div className="TodoApp">
         <h1>我的待办</h1>
-        <TodoInput />
+        <TodoInput content={this.state.newTod}/>
         <ul>
             {todos}
         </ul>

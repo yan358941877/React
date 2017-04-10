@@ -3,16 +3,13 @@ import React from "react";
 class TodoInput extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            value: 'test'
-        }
     }
 
     render(){
 
         return (
             <div className="TodoInput">
-                <input type="text" value={this.state.value}/>
+                <input type="text" defaultValue={this.props.content}/>
             </div>
         )
     }
