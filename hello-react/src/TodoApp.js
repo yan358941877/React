@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoInput from './TodoInput';
+import TodoItem from './TodoItem';
 
 class TodoApp extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class TodoApp extends React.Component {
   }
   render() {
     let todos = this.state.todoList.map(function(item, index){
-      return <li>{item.title}</li>;
+      return <TodoItem title={item.title} />;
     });
     return (
       
