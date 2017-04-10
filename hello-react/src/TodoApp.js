@@ -1,6 +1,6 @@
 import React from 'react';
 
-class App extends React.Component {
+class TodoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,7 @@ class App extends React.Component {
     });
     return (
       
-      <div className="App">
+      <div className="TodoApp">
         
         <h1>我的待办</h1>
         <div className="TodoInput">
@@ -32,4 +32,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default TodoApp;
