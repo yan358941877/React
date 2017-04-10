@@ -7,7 +7,11 @@ class TodoItem extends React.Component {
     
     render() {
         return (
-            <li className="TodoItem">{this.props.todo.title}</li>
+            <li className="TodoItem">
+                <input type="checkbox" />
+                {this.props.todo.title}
+                <span>删除</span>
+            </li>
         )
     }
 }

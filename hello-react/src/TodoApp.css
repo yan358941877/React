@@ -24,9 +24,37 @@
 }
 
 .TodoItem {
+    box-sizing: border-box;
     width: 600px;
     margin: 20px auto;
     font-size: 1.25em;
     line-height: 2em;
     border: 1px dashed #aaa;
+    padding-left: 40px;
+    position: relative;
+}
+
+.TodoItem input {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -10px;
+}
+
+.TodoItem span {
+    display: inline-block;
+    font-size: 1rem;
+    width: 3em;
+    line-height: 1.5em;
+    text-align: center;
+    border: 1px solid red;
+    border-radius: 0.2em;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -0.75em;
+    cursor: pointer;
 }
