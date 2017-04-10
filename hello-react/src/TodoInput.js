@@ -11,7 +11,7 @@ class TodoInput extends React.Component {
     render(){
 
         return (
-            <div>
+            <div className="TodoInput">
                 <input type="text" value={this.state.value}/>
             </div>
         )

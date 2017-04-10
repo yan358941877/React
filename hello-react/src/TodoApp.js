@@ -3,6 +3,7 @@ import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import 'normalize.css';
 import 'reset.css';
+import './TodoApp.css';
 
 class TodoApp extends React.Component {
   constructor(props) {

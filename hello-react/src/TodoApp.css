@@ -1,26 +1,22 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-
-#root,
-#root02 {
-    text-align: center;
+.TodoApp {
     background-image: linear-gradient(to right, blue, red, blue, red, blue);
     -webkit-background-clip: text;
     color: transparent;
     background-size: 200% 100%;
-}
-
-#root {
-    margin-top: 50px;
     animation: root01-color 3s infinite linear;
 }
 
-#root02 {
-    margin-top: 20px;
-    animation: root02-color 3s infinite linear;
+.TodoApp h1 {
+    font-size: 2em;
+}
+
+.TodoInput input {
+    width: 300px;
+    height: 20px;
+}
+
+.TodoItem {
+    color: #000;
 }
 
 @keyframes root01-color {
