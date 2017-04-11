@@ -16,9 +16,9 @@ class TodoApp extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
   }
+
   render() {
-    //let toggle = this.toggle;
-    let deleteItem = this.deleteItem;
+    
     let self = this;
     let todos = this.state.todoList.map(function(item, index){
       if(item.deleted){
@@ -28,8 +28,8 @@ class TodoApp extends React.Component {
         <TodoItem key={item.id} todo={item} onToggle={self.toggle} onDelete={self.deleteItem}/>
       )
     });
-    return (
-      
+
+    return ( 
       <div className="TodoApp">
         <h1>我的待办</h1>
         <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
@@ -39,6 +39,7 @@ class TodoApp extends React.Component {
       </div>
     );
   }
+
   addTodo(event){
     //console.log(this);
     //往todoList中新增数据
@@ -55,13 +56,13 @@ class TodoApp extends React.Component {
           todoList:this.state.todoList
         })
     }
-    
   }
 
   toggle(e,todo){
     todo.status = todo.status === 'completed' ? '' : 'completed';
     this.setState(this.state);
   }
+  
   deleteItem(e, todo){
     todo.deleted = true;
     this.setState(this.state);
