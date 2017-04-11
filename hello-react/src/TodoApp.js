@@ -42,7 +42,7 @@ class TodoApp extends React.Component {
   addTodo(event){
     //console.log(this);
     //往todoList中新增数据
-    if(event.target.value.length > 0 && /\w/.test(event.target.value)){
+    if(event.target.value.length > 0 && event.target.value.trim().length > 0){
         this.state.todoList.push({
           id: this.state.todoList.length+1,
           title: event.target.value,
