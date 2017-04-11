@@ -14,13 +14,14 @@ class TodoApp extends React.Component {
     };
     this.addTodo = this.addTodo.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.deleteItem = this.deleteItem(this);
   }
   render() {
     //let toggle = this.toggle;
     let self = this;
     let todos = this.state.todoList.map(function(item, index){
       return (
-        <TodoItem todo={item} onToggle={self.toggle}/>
+        <TodoItem todo={item} onToggle={self.toggle} onDelete={self.deleteItem}/>
       )
     });
     return (
@@ -52,6 +53,10 @@ class TodoApp extends React.Component {
 
   toggle(e,todo){
     todo.status = todo.status === 'completed' ? '' : 'completed';
+    this.setState(this.state);
+  }
+  deleteItem(e, todo){
+    todo.deleted = true;
     this.setState(this.state);
   }
 }
