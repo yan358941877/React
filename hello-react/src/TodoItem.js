@@ -4,7 +4,7 @@ class TodoItem extends React.Component {
     constructor(props){
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.deleteSelf = this.deleteSelf(this);
+        this.deleteSelf = this.deleteSelf.bind(this);
     }
     
     render() {
@@ -18,6 +18,7 @@ class TodoItem extends React.Component {
     }
 
     toggle(e){
+        
         this.props.onToggle(e, this.props.todo);
     }
     deleteSelf(e){
