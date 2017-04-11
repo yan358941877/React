@@ -13,8 +13,7 @@ class TodoItem extends React.Component {
                 <input type="checkbox" checked={this.props.todo.status==='completed'} onChange={this.toggle}/>
                 {this.props.todo.title}
                 <span onClick={this.deleteSelf}>删除</span>
-            </li>
-        )
+            </li>);
     }
 
     toggle(e){
