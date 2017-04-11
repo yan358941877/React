@@ -25,7 +25,7 @@ class TodoApp extends React.Component {
         return false;
       }
       return (
-        <TodoItem todo={item} onToggle={self.toggle} onDelete={self.deleteItem}/>
+        <TodoItem key={item.id} todo={item} onToggle={self.toggle} onDelete={self.deleteItem}/>
       )
     });
     return (
@@ -42,17 +42,20 @@ class TodoApp extends React.Component {
   addTodo(event){
     //console.log(this);
     //往todoList中新增数据
-    this.state.todoList.push({
-      id: this.state.todoList.length+1,
-      title: event.target.value,
-      status: null,
-      deleted: false,
-    });
+    if(event.target.value.length > 0 && /\w/.test(event.target.value)){
+        this.state.todoList.push({
+          id: this.state.todoList.length+1,
+          title: event.target.value,
+          status: null,
+          deleted: false,
+        });
 
-    this.setState({
-      newTodo: '',
-      todoList:this.state.todoList
-    })
+        this.setState({
+          newTodo: '',
+          todoList:this.state.todoList
+        })
+    }
+    
   }
 
   toggle(e,todo){
