@@ -13,10 +13,15 @@ class TodoApp extends React.Component {
       todoList: []
     };
     this.addTodo = this.addTodo.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
   render() {
+    //let toggle = this.toggle;
+    let self = this;
     let todos = this.state.todoList.map(function(item, index){
-      return <TodoItem todo={item} />;
+      return (
+        <TodoItem todo={item} onToggle={self.toggle}/>
+      )
     });
     return (
       
@@ -35,7 +40,7 @@ class TodoApp extends React.Component {
     this.state.todoList.push({
       id: this.state.todoList.length+1,
       title: event.target.value,
-      status: 0,
+      status: null,
       deleted: false
     });
 
@@ -43,7 +48,11 @@ class TodoApp extends React.Component {
       newTodo: '',
       todoList:this.state.todoList
     })
+  }
 
+  toggle(e,todo){
+    todo.status = todo.status === 'completed' ? '' : 'completed';
+    this.setState(this.state);
   }
 }
 
