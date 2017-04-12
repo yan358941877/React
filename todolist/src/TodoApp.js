@@ -10,6 +10,8 @@ class TodoApp extends React.Component {
         }
         this.handlerKeyPress = this.handlerKeyPress.bind(this);
         this.addNewItem = this.addNewItem.bind(this);
+        this.handlerDeleteItem = this.handlerDeleteItem.bind(this);
+        this.handlerFinishChange = this.handlerFinishChange.bind(this);
     }
     handlerKeyPress(event) {
         //alert(event.which);
@@ -32,11 +34,29 @@ class TodoApp extends React.Component {
             });
         }
     }
+    handlerFinishChange(event, todo){
+        todo.finish = !todo.finish;
+        this.setState({
+            todoItemList: this.state.todoItemList
+        });
+    }
+    handlerDeleteItem(event, todo){
+        todo.deleted = !todo.deleted;
+        this.setState({
+            todoItemList: this.state.todoItemList
+        });
+    }
     render() {
+        const context = this;
         const todos = this.state.todoItemList.map(function(item,index){
-            return (        
-                <TodoItem key={item.id} content={item.content} finish={item.finish} deleted={item.deleted}/>
-            );
+            if(item.deleted == false){
+                return (        
+                    <TodoItem key={item.id} 
+                        todo={item}
+                        finishChange={context.handlerFinishChange}
+                        deleteItem={context.handlerDeleteItem}/>
+                    );
+            }
         })
         return (
             <div className="TodoApp">  
