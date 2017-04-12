@@ -9,7 +9,6 @@ class TodoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newTodo: '',
       todoList: []
     };
     this.addTodo = this.addTodo.bind(this);
@@ -32,7 +31,7 @@ class TodoApp extends React.Component {
     return ( 
       <div className="TodoApp">
         <h1>我的待办</h1>
-        <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
+        <TodoInput onSubmit={this.addTodo}/>
         <ul>
             {todos}
         </ul>
@@ -41,8 +40,7 @@ class TodoApp extends React.Component {
   }
 
   addTodo(event){
-    //console.log(this);
-    //往todoList中新增数据
+    //往todoList中新增数据,通过event.target.value来获取用户的输入
     if(event.target.value.length > 0 && event.target.value.trim().length > 0){
         this.state.todoList.push({
           id: this.state.todoList.length+1,
@@ -50,19 +48,22 @@ class TodoApp extends React.Component {
           status: null,
           deleted: false,
         });
-
+        
+        // 会重新调用render方法
         this.setState({
-          newTodo: '',
           todoList:this.state.todoList
         })
     }
   }
-
+  
+  // 勾选框的相关操作
   toggle(e,todo){
     todo.status = todo.status === 'completed' ? '' : 'completed';
     this.setState(this.state);
   }
-  
+
+  // 删除事项的操作
+  // 这里的todo是对todoList中某项的引用,在这里修改同样会修改todoList对应的项目
   deleteItem(e, todo){
     todo.deleted = true;
     this.setState(this.state);

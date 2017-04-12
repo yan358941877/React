@@ -16,8 +16,7 @@ class TodoItem extends React.Component {
             </li>);
     }
 
-    toggle(e){
-        
+    toggle(e){       
         this.props.onToggle(e, this.props.todo);
     }
     deleteSelf(e){
