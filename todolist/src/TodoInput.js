@@ -6,7 +6,8 @@ class TodoInput extends React.Component {
         this.handlerKeyPress = this.handlerKeyPress.bind(this);
     }
     handlerKeyPress(event) {
-        alert("按下了按键!");
+        //alert("按下了按键!");
+        this.props.keyPress(event);
     }
     render() {
         return  (
