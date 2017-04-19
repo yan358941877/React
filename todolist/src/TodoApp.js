@@ -2,7 +2,22 @@ import React from "react";
 import TodoInput from "./TodoInput";
 import TodoItem from "./TodoItem";
 import * as localStore from "./localStore";
+import AV from 'leancloud-storage'
 
+var APP_ID = 'xnoxEOIdaxodpL5tyYXJ8ycp-gzGzoHsz';
+var APP_KEY = 'THpwgGcr0RImlTlQgV1htgpv';
+AV.init({
+  appId: APP_ID,
+  appKey: APP_KEY
+});
+
+var TestObject = AV.Object.extend('TestObject');
+var testObject = new TestObject();
+testObject.save({
+  words: 'Hello World!'
+}).then(function(object) {
+  alert('LeanCloud Rocks!');
+})
 class TodoApp extends React.Component {
     constructor(props) {
         super(props);
