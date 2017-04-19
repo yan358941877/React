@@ -1,0 +1,55 @@
+.userDialog {
+  width: 300px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-shadow: 2px 2px 3px rgba(0,0,0, 0.2);
+  padding: 20px;
+}
+.userDialog input[type=radio] {
+  display: none;
+}
+.userDialog label {
+  border: 1px solid #aaa;
+}
+.userDialog label:hover {
+  background: #666;
+  cursor:pointer;
+}
+.userDialog .login-operate p > span,
+.userDialog .signup-operate p > span{
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+}
+.userDialog .login-operate p,
+.userDialog .signup-operate p{
+  margin: 20px;
+}
+.userDialog .login-operate button,
+.userDialog .signup-operate button{
+  float: right;
+  margin-right: 3em;
+  margin-bottom: 1em;
+}
+.userDialog .login-operate,
+.userDialog .signup-operate{
+  overflow: hidden;
+}
+
+.userDialog .signup-operate {
+  display: none;
+}
+
+
+#login:checked ~ .login-operate {
+  display: block;
+}
+#login:checked ~ .signup-operate {
+  display: none;
+}
+#signup:checked ~ .login-operate {
+  display: none;
+}
+#signup:checked ~ .signup-operate {
+  display: block;
+}
