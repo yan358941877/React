@@ -1,17 +1,21 @@
 import React from "react";
 import TodoInput from "./TodoInput";
 import TodoItem from "./TodoItem";
+import * as localStore from "./localStore";
 
 class TodoApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todoItemList : []
+            todoItemList : localStore.load('todoList') || []
         }
         this.handlerKeyPress = this.handlerKeyPress.bind(this);
         this.addNewItem = this.addNewItem.bind(this);
         this.handlerDeleteItem = this.handlerDeleteItem.bind(this);
         this.handlerFinishChange = this.handlerFinishChange.bind(this);
+    }
+    componentDidUpdate(){
+        localStore.save('todoList', this.state.todoItemList);
     }
     handlerKeyPress(event) {
         //alert(event.which);
@@ -29,6 +33,8 @@ class TodoApp extends React.Component {
                 finish: false,
                 deleted: false
             });
+
+            
             this.setState({
                 todoItemList: this.state.todoItemList
             });
@@ -36,12 +42,14 @@ class TodoApp extends React.Component {
     }
     handlerFinishChange(event, todo){
         todo.finish = !todo.finish;
+        
         this.setState({
             todoItemList: this.state.todoItemList
         });
     }
     handlerDeleteItem(event, todo){
         todo.deleted = !todo.deleted;
+        
         this.setState({
             todoItemList: this.state.todoItemList
         });
