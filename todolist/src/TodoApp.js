@@ -1,28 +1,45 @@
 import React from "react";
 import TodoInput from "./TodoInput";
 import TodoItem from "./TodoItem";
-import * as localStore from "./localStore";
-import AV from 'leancloud-storage'
+//import * as localStore from "./localStore";
+//import AV from 'leancloud-storage'
 
-var APP_ID = 'xnoxEOIdaxodpL5tyYXJ8ycp-gzGzoHsz';
-var APP_KEY = 'THpwgGcr0RImlTlQgV1htgpv';
-AV.init({
-  appId: APP_ID,
-  appKey: APP_KEY
-});
+// var APP_ID = 'xnoxEOIdaxodpL5tyYXJ8ycp-gzGzoHsz';
+// var APP_KEY = 'THpwgGcr0RImlTlQgV1htgpv';
+// AV.init({
+//   appId: APP_ID,
+//   appKey: APP_KEY
+// });
 
-var TestObject = AV.Object.extend('TestObject');
-var testObject = new TestObject();
-testObject.save({
-  words: 'Hello World!'
-}).then(function(object) {
-  alert('LeanCloud Rocks!');
-})
+/* 两种方式存放数据 */
+
+/* 方法一： 使用set()方法， */
+// var TodoFolder = AV.Object.extend('TodoFolder');
+//   // 新建对象
+//   var todoFolder = new TodoFolder();
+//   // 设置名称
+//   todoFolder.set('name','工作');
+//   // 设置优先级
+//   todoFolder.set('priority',1);
+//   todoFolder.save().then(function (todo) {
+//     console.log('objectId is ' + todo.id);
+//   }, function (error) {
+//     console.error(error);
+//   });
+
+/* 方法二： 直接在save中存放数据 */
+// var TestObject = AV.Object.extend('TestObject');
+// var testObject = new TestObject();
+// testObject.save({
+//   words: 'Hello World!'
+// }).then(function(object) {
+//   alert('LeanCloud Rocks!');
+// })
 class TodoApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todoItemList : localStore.load('todoList') || []
+            todoItemList :  []
         }
         this.handlerKeyPress = this.handlerKeyPress.bind(this);
         this.addNewItem = this.addNewItem.bind(this);
@@ -30,7 +47,7 @@ class TodoApp extends React.Component {
         this.handlerFinishChange = this.handlerFinishChange.bind(this);
     }
     componentDidUpdate(){
-        localStore.save('todoList', this.state.todoItemList);
+        // localStore.save('todoList', this.state.todoItemList);
     }
     handlerKeyPress(event) {
         //alert(event.which);
