@@ -1,6 +1,6 @@
 import React from "react";
 import './UserDialog.css';
-import { signUp} from './leanCloud'
+import { signUp, signIn } from './leanCloud'
 
 class UserDialog extends React.Component {
     constructor(props) {
@@ -39,8 +39,12 @@ class UserDialog extends React.Component {
             console.log('error');
         }
         if (type === 'signUp') {
-            let success = this.props.onSignUp;
+            let success = this.props.onSign;
             signUp(username, password, success, error);
+        }
+        if (type === 'signIn'){
+            let success = this.props.onSign;
+            signIn(username, password, success, error);
         }
     }
     render() {
@@ -60,7 +64,7 @@ class UserDialog extends React.Component {
             </form>
         )
         let signInForm = (
-            <form className="signIn"> {/* 登录*/}
+            <form className="signIn" onSubmit={this.handleSubmit.bind(this, 'signIn')}> {/* 登录*/}
                 <div className="row">
                     <label>用户名</label>
                     <input type="text" value={this.state.formData.username} onChange={this.handleInput.bind(this, 'username')} />
