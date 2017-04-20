@@ -20,21 +20,43 @@ class UserDialog extends React.Component {
         })
     }
     // 当用户在登录或注册对话框上输入用户名和密码时，修改state
-    handleInput(event,key){
+    handleInput(key,event){
+        //console.log(event.target.value);
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.formData[key] = event.target.value;
         this.setState(stateCopy);
     }
+
+    // 当用户提交时进行的操作
+    handleSubmit(type, event){
+        // 因为当用户点击登录或者注册时，需要将相关信息显示在TodoApp上，且TodoApp还会对这些信息进行处理，因此 此处应该调用TodoApp(父级组件)的相关方法来将信息传递回去
+        // 或者先进行注册，然后将注册得到的信息传递回去
+        event.preventDefault();
+
+        let username = this.state.formData.username;
+        let password = this.state.formData.password;
+        let success = function(){
+            console.log('success');
+        }
+        let error = function(){
+            console.log('error');
+        }
+
+        if(type === 'signUp'){
+            signUp(username, password,success, error);
+        }
+
+    }
     render() {
         let signUpForm = (
-            <form className="signUp" > {/* 注册*/}
+            <form className="signUp" onSubmit={this.handleSubmit.bind(this, 'signUp')}> {/* 注册*/}
                 <div className="row">
                     <label>用户名</label>
-                    <input type="text" value={this.state.formData.username} onChange={this.handleInput.bind(this, 'username')}/>
+                    <input type="text" value={this.state.formData.username} onChange={this.handleInput.bind(this,'username')}/>
                 </div>
                 <div className="row">
                     <label>密码</label>
-                    <input type="password" value={this.state.formData.password} onChange={this.handleInput.bind(this, 'password')}/>
+                    <input type="password" value={this.state.formData.password} onChange={this.handleInput.bind(this,'password')}/>
                 </div>
                 <div className="row actions">
                     <input type="submit" value="注册"/>
