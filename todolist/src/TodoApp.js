@@ -16,9 +16,7 @@ class TodoApp extends React.Component {
         this.handlerDeleteItem = this.handlerDeleteItem.bind(this);
         this.handlerFinishChange = this.handlerFinishChange.bind(this);
     }
-    componentDidUpdate(){
-        // localStore.save('todoList', this.state.todoItemList);
-    }
+    
     handlerKeyPress(event) {
         //alert(event.which);
         if(event.which === 13){
@@ -34,9 +32,7 @@ class TodoApp extends React.Component {
                 content: value,
                 finish: false,
                 deleted: false
-            });
-
-            
+            });       
             this.setState({
                 todoItemList: this.state.todoItemList
             });
@@ -56,9 +52,11 @@ class TodoApp extends React.Component {
             todoItemList: this.state.todoItemList
         });
     }
+    // 当注册成功时
     onSignUp(user){
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.user = user;
+        console.log(user);
         this.setState(stateCopy);
     }
     render() {
@@ -73,14 +71,15 @@ class TodoApp extends React.Component {
                     );
             }
         })
+        
         return (
             <div className="TodoApp">  
-                <h2>{this.state.user.username|| "我的"}待办事项</h2>
+                <h2>{this.state.user.username|| "我"}的待办事项</h2>
                 <TodoInput keyPress={this.handlerKeyPress}/>
                 <ul>
                     {todos}
                 </ul>
-                {this.state.user.id?null: <UserDialog onSign={this.onSignUp.bind(this)}/>}
+                {this.state.user.id?null: <UserDialog onSignUp={this.onSignUp.bind(this)}/>}
             </div>
         )
     }
