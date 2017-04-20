@@ -1,55 +1,20 @@
-.userDialog {
-  width: 300px;
-  border: 1px solid #aaa;
+UserDialog-Wrapper{ 
+  /*全屏*/      position: fixed; top: 0; left: 0; bottom: 0; right: 0; 
+  /*内容居中*/  display: flex; justify-content: center; align-items: center;
+}
+.UserDialog{
+  border: 1px solid;
   border-radius: 4px;
-  box-shadow: 2px 2px 3px rgba(0,0,0, 0.2);
-  padding: 20px;
-}
-.userDialog input[type=radio] {
-  display: none;
-}
-.userDialog label {
+  min-width: 20em;
+  background: white;
   border: 1px solid #aaa;
+  box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
 }
-.userDialog label:hover {
-  background: #666;
-  cursor:pointer;
-}
-.userDialog .login-operate p > span,
-.userDialog .signup-operate p > span{
-  display: inline-block;
-  width: 30%;
-  text-align: right;
-}
-.userDialog .login-operate p,
-.userDialog .signup-operate p{
-  margin: 20px;
-}
-.userDialog .login-operate button,
-.userDialog .signup-operate button{
-  float: right;
-  margin-right: 3em;
-  margin-bottom: 1em;
-}
-.userDialog .login-operate,
-.userDialog .signup-operate{
-  overflow: hidden;
-}
+.UserDialog > nav:first-child{ padding: 1em; margin-left: -2em;}
+.UserDialog > nav:first-child label{ margin-left: 2em; cursor: pointer;}
 
-.userDialog .signup-operate {
-  display: none;
-}
+.UserDialog > .panes { padding: 0 1em 1em; }
 
-
-#login:checked ~ .login-operate {
-  display: block;
-}
-#login:checked ~ .signup-operate {
-  display: none;
-}
-#signup:checked ~ .login-operate {
-  display: none;
-}
-#signup:checked ~ .signup-operate {
-  display: block;
-}
+.UserDialog form>.row{ display: flex; padding: .3em 0; }
+.UserDialog form>.row>label:first-child{ width: 4em; }
+.UserDialog form>.row.actions{ padding-left: 4em; }
