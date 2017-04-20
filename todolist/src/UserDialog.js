@@ -1,6 +1,6 @@
 import React from "react";
 import './UserDialog.css';
-import { signUp, getCurrentUser } from './leanCloud'
+import { signUp} from './leanCloud'
 
 class UserDialog extends React.Component {
     constructor(props) {
@@ -86,7 +86,7 @@ class UserDialog extends React.Component {
                         </label>
                     </nav>
                     <div className="panes">
-                        {this.state.selected == 'signUp' ? signUpForm : signInForm}
+                        {this.state.selected === 'signUp' ? signUpForm : signInForm}
                     </div>
                 </div>
             </div>

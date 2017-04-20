@@ -62,7 +62,7 @@ class TodoApp extends React.Component {
     render() {
         const context = this;
         const todos = this.state.todoItemList.map(function(item,index){
-            if(item.deleted == false){
+            if(item.deleted === false){
                 return (        
                     <TodoItem key={item.id} 
                         todo={item}
