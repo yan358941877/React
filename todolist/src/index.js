@@ -8,6 +8,6 @@ import './TodoApp.css';
 
 
 ReactDOM.render(
-  <TodoApp />,
+    <TodoApp />,
   document.getElementById('root')
 );

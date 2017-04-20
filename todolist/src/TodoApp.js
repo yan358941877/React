@@ -2,14 +2,15 @@ import React from "react";
 import TodoInput from "./TodoInput";
 import TodoItem from "./TodoItem";
 import UserDialog from "./UserDialog";
-import {getCurrentUser} from './leanCloud';
+import {getCurrentUser,updateTodo,getCurrentTodo} from './leanCloud';
+import {getStateCopy} from './Utils';
 
 class TodoApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             user: getCurrentUser()|| {},
-            todoItemList :  []
+            todoItemList : getCurrentTodo(this.getTodoList.bind(this)) || []
         }
         this.handlerKeyPress = this.handlerKeyPress.bind(this);
         this.addNewItem = this.addNewItem.bind(this);
@@ -28,7 +29,7 @@ class TodoApp extends React.Component {
     addNewItem(value){
         if(value.length>0&&value.trim().length>0){
             this.state.todoItemList.push({
-                id: idGenerator(),
+                //id: idGenerator(),
                 content: value,
                 finish: false,
                 deleted: false
@@ -36,6 +37,8 @@ class TodoApp extends React.Component {
             this.setState({
                 todoItemList: this.state.todoItemList
             });
+            // 在此处向数据库中更新当前用户的todoList
+            updateTodo(this.state.todoItemList);
         }
     }
     handlerFinishChange(event, todo){
@@ -44,6 +47,8 @@ class TodoApp extends React.Component {
         this.setState({
             todoItemList: this.state.todoItemList
         });
+        // 在此处向数据库中更新当前用户的todoList
+        updateTodo(this.state.todoItemList);
     }
     handlerDeleteItem(event, todo){
         todo.deleted = !todo.deleted;
@@ -51,20 +56,36 @@ class TodoApp extends React.Component {
         this.setState({
             todoItemList: this.state.todoItemList
         });
+        // 在此处向数据库中更新当前用户的todoList
+        updateTodo(this.state.todoItemList);
     }
-    // 当注册成功时
-    onSignUp(user){
-        let stateCopy = JSON.parse(JSON.stringify(this.state));
+    // 当注册或者登录成功时
+    onSign(user, todolist){
+        let stateCopy = getStateCopy(this.state);
         stateCopy.user = user;
-        console.log(user);
+        stateCopy.todoItemList = todolist;
         this.setState(stateCopy);
     }
+    getTodoList(todolist){
+        let stateCopy = getStateCopy(this.state);
+        stateCopy.todoItemList = todolist;
+        this.setState(stateCopy);
+    }
+    // 退出当前账户
+    handleLogOut(){
+        this.setState({
+            user: {},
+            todoItemList :  []
+        });
+        localStorage.clear();
+    }
+    
     render() {
         const context = this;
         const todos = this.state.todoItemList.map(function(item,index){
             if(item.deleted === false){
                 return (        
-                    <TodoItem key={item.id} 
+                    <TodoItem key={index} 
                         todo={item}
                         finishChange={context.handlerFinishChange}
                         deleteItem={context.handlerDeleteItem}/>
@@ -75,11 +96,12 @@ class TodoApp extends React.Component {
         return (
             <div className="TodoApp">  
                 <h2>{this.state.user.username|| "我"}的待办事项</h2>
+                <span className="logOut" onClick={this.handleLogOut.bind(this)}>注销</span>
                 <TodoInput keyPress={this.handlerKeyPress}/>
                 <ul>
                     {todos}
                 </ul>
-                {this.state.user.id?null: <UserDialog onSign={this.onSignUp.bind(this)}/>}
+                {this.state.user.id?null: <UserDialog onSign={this.onSign.bind(this)}/>}
             </div>
         )
     }

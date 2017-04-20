@@ -1,6 +1,6 @@
 import React from "react";
 import './UserDialog.css';
-import { signUp, signIn } from './leanCloud'
+import { signUp, signIn} from './leanCloud'
 
 class UserDialog extends React.Component {
     constructor(props) {
@@ -35,16 +35,25 @@ class UserDialog extends React.Component {
 
         let username = this.state.formData.username;
         let password = this.state.formData.password;
-        let error = function () {
-            console.log('error');
+        let errorFn = function (error) {
+            if(error.code === 202){
+                alert("该用户名已被占用，请更换用户名重新注册！");
+            }else if(error.code === 210){
+                alert("用户名和密码不匹配，请重新输入！");
+            }else if(error.code === 211){
+                alert("该用户不存在，请重新输入用户名");
+            }else{
+                alert(error);
+            }
         }
         if (type === 'signUp') {
-            let success = this.props.onSign;
-            signUp(username, password, success, error);
+            let successFn = this.props.onSign;
+            signUp(username, password, successFn,errorFn);
+            
         }
         if (type === 'signIn'){
-            let success = this.props.onSign;
-            signIn(username, password, success, error);
+            let successFn = this.props.onSign;
+            signIn(username, password, successFn,errorFn);
         }
     }
     render() {

@@ -2,6 +2,8 @@
     width: 900px;
     margin: 40px auto;
     border: 1px solid #aaa;
+    position: relative;
+    box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
 }
 
 .TodoApp h2 {
@@ -10,7 +12,15 @@
     border-bottom: 1px solid #aaa;
     text-align: center;
 }
-
+.TodoApp .logOut {
+    display: inline-block;
+    position: absolute;
+    right: 2em;
+    top: 2em;
+    border: 1px solid red;
+    padding: 0.25em; 
+    cursor: pointer;
+}
 .TodoInput input {
     display: block;
     width: 600px;
@@ -21,6 +31,7 @@
 
 .TodoApp ul {
     margin: 30px auto;
+    min-height: 200px;
 }
 
 .TodoItem {
