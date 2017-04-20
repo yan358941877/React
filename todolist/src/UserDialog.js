@@ -13,7 +13,7 @@ class UserDialog extends React.Component {
             }
         }
     }
-
+    // 切换登录和注册功能
     switchOperate(event){
         this.setState({
             selected: event.target.value
