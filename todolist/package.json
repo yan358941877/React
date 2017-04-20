@@ -2,6 +2,7 @@
   "name": "todolist",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yan358941877.github.io/React/todolist/build",
   "dependencies": {
     "leancloud-storage": "^2.1.4",
     "normalize.css": "^6.0.0",
