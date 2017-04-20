@@ -19,16 +19,22 @@ class UserDialog extends React.Component {
             selected: event.target.value
         })
     }
+    // 当用户在登录或注册对话框上输入用户名和密码时，修改state
+    handleInput(event,key){
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.formData[key] = event.target.value;
+        this.setState(stateCopy);
+    }
     render() {
         let signUpForm = (
-            <form className="signUp"> {/* 注册*/}
+            <form className="signUp" > {/* 注册*/}
                 <div className="row">
                     <label>用户名</label>
-                    <input type="text" />
+                    <input type="text" value={this.state.formData.username} onChange={this.handleInput.bind(this, 'username')}/>
                 </div>
                 <div className="row">
                     <label>密码</label>
-                    <input type="password" />
+                    <input type="password" value={this.state.formData.password} onChange={this.handleInput.bind(this, 'password')}/>
                 </div>
                 <div className="row actions">
                     <input type="submit" value="注册"/>
@@ -39,11 +45,11 @@ class UserDialog extends React.Component {
             <form className="signIn"> {/* 登录*/}
                 <div className="row">
                     <label>用户名</label>
-                    <input type="text" />
+                    <input type="text" value={this.state.formData.username} onChange={this.handleInput.bind(this, 'username')}/>
                 </div>
                 <div className="row">
                     <label>密码</label>
-                    <input type="password" />
+                    <input type="password" value={this.state.formData.password} onChange={this.handleInput.bind(this, 'password')}/>
                 </div>
                 <div className="row actions">
                     <input type="submit" value="登录"/>
