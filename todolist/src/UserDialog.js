@@ -13,6 +13,12 @@ class UserDialog extends React.Component {
             }
         }
     }
+
+    switchOperate(event){
+        this.setState({
+            selected: event.target.value
+        })
+    }
     render() {
         let signUpForm = (
             <form className="signUp"> {/* 注册*/}
@@ -48,12 +54,15 @@ class UserDialog extends React.Component {
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
                     <nav>
-                        <label><input type="radio" value="signUp" /> 注册</label>
-                        <label><input type="radio" value="signIn" /> 登录</label>
+                        <label>
+                            <input type="radio" value="signUp" checked={this.state.selected==="signUp"} onChange={this.switchOperate.bind(this)}/> 注册
+                        </label>
+                        <label>
+                            <input type="radio" value="signIn" checked={this.state.selected==="signIn"} onChange={this.switchOperate.bind(this)}/> 登录
+                        </label>
                     </nav>
                     <div className="panes">
-                        {signUpForm}
-                        {signInForm}
+                        {this.state.selected=='signUp'?signUpForm:signInForm}
                     </div>
                 </div>
             </div>
