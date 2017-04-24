@@ -4,12 +4,13 @@ import TodoItem from './TodoItem';
 import 'normalize.css';
 import 'reset.css';
 import './TodoApp.css';
+import * as localStore from './localStore';
 
 class TodoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todoList: []
+      todoList: localStore.load('todolist') || []
     };
     this.addTodo = this.addTodo.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -38,7 +39,9 @@ class TodoApp extends React.Component {
       </div>
     );
   }
-
+  componentDidUpdate(){
+         localStore.save('todoList', this.state.todoItemList);
+  }
   addTodo(event){
     //往todoList中新增数据,通过event.target.value来获取用户的输入
     if(event.target.value.length > 0 && event.target.value.trim().length > 0){
@@ -53,6 +56,7 @@ class TodoApp extends React.Component {
         this.setState({
           todoList:this.state.todoList
         })
+        localStore.save('todoList', this.state.todoList)
     }
   }
   
@@ -60,6 +64,7 @@ class TodoApp extends React.Component {
   toggle(e,todo){
     todo.status = todo.status === 'completed' ? '' : 'completed';
     this.setState(this.state);
+    localStore.save('todoList', this.state.todoList)
   }
 
   // 删除事项的操作
@@ -67,6 +72,7 @@ class TodoApp extends React.Component {
   deleteItem(e, todo){
     todo.deleted = true;
     this.setState(this.state);
+    localStore.save('todoList', this.state.todoList)
   }
 }
 

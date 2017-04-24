@@ -19,7 +19,19 @@ export function signUp(username, password, successFn, errorFn) {
     // 获取用户信息
     user.signUp().then(function (loginedUser) {
         let user = getUserFromAVUser(loginedUser);
+        let user_id = user.user_id;
         //let todolist = loginedUser.attributes.todolist;
+        var TodoList = AV.Object.extend('TodoList');
+        // 新建对象
+        var todoList = new TodoList();
+        // 设置名称
+        todoList.set('user_id', user_id);
+
+        todoList.save().then(function (todo) {
+            
+        }, function (error) {
+            console.error(error);
+        });
         successFn.call(null, user, []);
     }, errorFn);
 
@@ -42,7 +54,7 @@ export function signIn(username, password, successFn, errorFn) {
             // 如果得到的todolist是undefined，说明TodoList表中没有该用户的信息，即该用户还没有输入过 待做事项
             if (!result[0]) {
                 successFn.call(null, user, []);
-            }else {
+            } else {
                 successFn.call(null, user, result[0].attributes.todolist);
             }
         }, function (error) {
@@ -50,7 +62,7 @@ export function signIn(username, password, successFn, errorFn) {
     }, function (error) {
         errorFn.call(null, error)
     });
-    
+
     // let user = getCurrentUser();
     // let user_id = user.user_id;
     // let query = new AV.Query('TodoList');
@@ -123,16 +135,18 @@ export function getCurrentTodo(successFn) {
 export function updateTodo(newtodolist) {
     // 首先查找到与当前用户对应的 在TodoList表中的实例
     let user = getCurrentUser();
-
+    // 获取当前用户的id值
     let user_id = user.user_id;
-
+    // 建立查询
     let query = new AV.Query('TodoList');
+    // 设定查询条件
     query.equalTo('user_id', user_id);
+    // 进行查询
     query.find().then(function (result) {
         //console.log(result[0].attributes.todolist);
         // 得到实例的id，对实例进行操作要必须获取实例的id
         let todolist_id = result[0].id;
-        
+
         // 对表中的对象进行修改
         let todolist = AV.Object.createWithoutData('TodoList', todolist_id);
         // 修改属性

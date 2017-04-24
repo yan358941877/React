@@ -42,6 +42,10 @@ class UserDialog extends React.Component {
                 alert("用户名和密码不匹配，请重新输入！");
             }else if(error.code === 211){
                 alert("该用户不存在，请重新输入用户名");
+            }else if(error.code === 216){
+                alert("用户名无效，请重新输入用户名");
+            }else if(error.code === 211){
+                alert("不允许空白，请重新输入密码");
             }else{
                 alert(error);
             }
