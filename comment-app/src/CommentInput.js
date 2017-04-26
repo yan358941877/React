@@ -19,7 +19,7 @@ class CommentInput extends Component{
             content: event.target.value
         })
     }
-    handleClick(event){
+    handleSubmit(event){
         // 先判断在props中是否存在由父级组件传来的回掉函数
         if(this.props.onSubmit){
             const {username, content} = this.state
