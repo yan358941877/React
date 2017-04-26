@@ -10,7 +10,10 @@ class CommentApp extends Component {
         }
     }
     handleSubmitComment(comment){
-        //console.log(comment);
+ 
+        if(!comment.username) return alert('请输入用户名')
+        if(!comment.content) return alert('请输入评论内容')
+
         let comments = JSON.parse(JSON.stringify(this.state.comments));
         comments.push(comment);
         this.setState({
