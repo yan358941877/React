@@ -11,6 +11,9 @@ class TodoApp extends Component {
     }
 
     handleAddTodo(content){
+        if(!content){
+            return 
+        }
         let todolist = JSON.parse(JSON.stringify(this.state.todolist))
         let todo = {
             content: content,

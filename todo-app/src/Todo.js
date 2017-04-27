@@ -4,7 +4,9 @@ class Todo extends Component {
     render(){
         return (
             <div className='Todo'>
-                {this.props.todo.content}
+                <input type='checkbox' className='todo-finish'/>
+                <p>{this.props.todo.content}</p>
+                <span className='todo-delete'>删除</span>
             </div>
         )
     }
