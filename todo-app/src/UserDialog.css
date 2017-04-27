@@ -1,0 +1,60 @@
+.UserDialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+}
+.dialog-panel {
+    width: 300px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+/* 用户选择登录还是注册 */
+.user-operate {
+    margin: 15px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.user-operate label {
+    margin-right: 15px;
+}
+
+.user-info {
+    margin: 25px 20px;
+    display: flex;
+}
+.user-info span {
+    display: flex;
+    flex-basis: 60px;
+    font-size: 16px;
+}
+.user-info input {
+    display: flex;
+    flex:1;
+    outline: none;
+    border: 1px solid #999;
+}
+.user-submit {
+    margin: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+.user-submit button {
+    outline: none;
+    display: inline-block;
+    width: 3em;
+    line-height: 1.5em;
+    border: 1px solid #999;
+    border-radius: 3px;
+    background: transparent;
+}

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import TodoInput from './TodoInput'
 import TodoList from './TodoList'
 import AV, {test} from './leanCloud'
+import UserDialog from './UserDialog'
 
 class TodoApp extends Component {
     constructor(){
@@ -74,6 +75,7 @@ class TodoApp extends Component {
                     todolist={this.state.todolist} 
                     onDelete={this.handleDeleteTodo.bind(this)}
                     onFinish={this.handleFinishTodo.bind(this)}/>
+                <UserDialog />
             </div>
         )
     }
