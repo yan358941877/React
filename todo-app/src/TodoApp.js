@@ -26,7 +26,7 @@ class TodoApp extends Component {
         return (
             <div className='TodoApp'>
                 <TodoInput onSubmit={this.handleAddTodo.bind(this)}/>
-                <TodoList />
+                <TodoList todolist={this.state.todolist}/>
             </div>
         )
     }
