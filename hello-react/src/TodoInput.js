@@ -7,6 +7,9 @@ class TodoInput extends Component {
             content: ''
         }
     }
+    componentDidMount(){
+        this.input.focus()
+    }
     handleInputChange(event) {
         let content = event.target.value
         this.setState({
@@ -30,7 +33,8 @@ class TodoInput extends Component {
                     type="text"
                     value={this.state.content}
                     onChange={this.handleInputChange.bind(this)}
-                    onKeyDown={this.handleSubmit.bind(this)} />
+                    onKeyDown={this.handleSubmit.bind(this)}
+                    ref={(input)=>this.input = input} />
             </div>
         )
     }
