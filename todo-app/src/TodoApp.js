@@ -24,6 +24,9 @@ class TodoApp extends Component {
             todolist: todolist
         })
     }
+    componentDidMount(){
+        this._saveTodo(todolist)
+    }
     handleAddTodo(content){
         if(!content){
             return 
@@ -37,8 +40,7 @@ class TodoApp extends Component {
         todolist.push(todo)
         this.setState({
             todolist: todolist
-        })
-        this._saveTodo(todolist)
+        })  
     }
 
     handleDeleteTodo(index){
@@ -47,7 +49,6 @@ class TodoApp extends Component {
         this.setState({
             todolist: todolist
         })
-        this._saveTodo(todolist)
     }
 
     handleFinishTodo(index, isFinish){
@@ -62,7 +63,6 @@ class TodoApp extends Component {
         this.setState({
             todolist: todolist
         })
-        this._saveTodo(todolist)
     }
     render(){
         return (
