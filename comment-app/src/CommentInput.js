@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
 
 class CommentInput extends Component{
+    // 组件参数验证，指定props中的onSubmit的类型为函数类型
+    static propTypes = {
+        onSubmit: PropTypes.func
+    }
     constructor(){
         super()
         this.state = {
