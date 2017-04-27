@@ -97,5 +97,8 @@ export function updateTodo(todolist) {
     }, function (error) {
 
     })
+}
 
+export function signout(){
+    AV.User.logOut();
 }

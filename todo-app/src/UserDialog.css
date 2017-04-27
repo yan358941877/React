@@ -43,6 +43,7 @@
     flex:1;
     outline: none;
     border: 1px solid #999;
+    border-radius: 3px;
 }
 .user-submit {
     margin: 25px;
@@ -54,7 +55,7 @@
     display: inline-block;
     width: 3em;
     line-height: 1.5em;
-    border: 1px solid #999;
+    border: 1px solid #EEA9B8;
     border-radius: 3px;
     background: transparent;
     cursor: pointer;

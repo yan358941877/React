@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import TodoInput from './TodoInput'
 import TodoList from './TodoList'
-import {getCurrentInfo,getCurrentUser,updateTodo,test2} from './leanCloud'
+import {getCurrentInfo,getCurrentUser,updateTodo,signout} from './leanCloud'
 import UserDialog from './UserDialog'
 
 class TodoApp extends Component {
@@ -85,11 +85,19 @@ class TodoApp extends Component {
             todolist: []
         })
     }
+    handleSignOut(){
+        signout()
+        this.setState({
+            username: '',
+            todolist: []
+        })
+    }
     render(){
         let dialog = <UserDialog onLogin={this.handleLogin.bind(this)} onSignup={this.handleSignup.bind(this)}/>
         return (
             <div className='TodoApp'>
                 <TodoInput onSubmit={this.handleAddTodo.bind(this)} username={this.state.username}/>
+                <button className="sign-out" onClick={this.handleSignOut.bind(this)}>注销</button>
                 <TodoList 
                     todolist={this.state.todolist} 
                     onDelete={this.handleDeleteTodo.bind(this)}

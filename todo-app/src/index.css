@@ -10,11 +10,25 @@ body {
   margin: 10px auto;
   min-width: 300px;
   max-width: 500px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #00a3cf;
   background-color: #fff;
   padding: 20px;
+  position: relative;
 }
 
+.sign-out {
+  position: absolute;
+  top: 50px;
+  right: 60px;
+  outline: none;
+    display: inline-block;
+    width: 3em;
+    line-height: 1.5em;
+    border: 1px solid #EE6A50;
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+}
 /* 输入框样式 */
 .TodoInput {
   background-color: #fff;
@@ -47,7 +61,7 @@ body {
 }
 .Todo {
   margin-bottom: 10px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #EEAD0E;
   padding: 10px 20px;
   border-radius: 3px;
   display: flex;
@@ -63,7 +77,7 @@ body {
 }
 .Todo span {
   font-size: 14px;
-  border: 1px solid #00a3cf;
+  border: 1px solid #EE6A50;
   border-radius: 3px;
   display: inline-block;
   padding: 4px;
