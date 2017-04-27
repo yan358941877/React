@@ -80,6 +80,7 @@ body {
   margin-bottom: 10px;
   padding-bottom: 10px;
   min-height: 50px;
+  position: relative;
 }
 
 .comment .comment-user {
@@ -94,4 +95,12 @@ body {
 .comment p {
   margin: 0;
   text-indent: 2em;
+}
+.comment-createtime{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 12px;
+  font-style: normal;
 }

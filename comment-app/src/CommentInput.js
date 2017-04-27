@@ -47,8 +47,13 @@ class CommentInput extends Component {
     handleSubmit(event) {
         // 先判断在props中是否存在由父级组件传来的回掉函数
         if (this.props.onSubmit) {
-            const { username, content } = this.state
-            this.props.onSubmit({ username, content })
+            //const { username, content } = this.state
+            //this.props.onSubmit({ username, content })
+            this.props.onSubmit({
+                username: this.state.username,
+                content: this.state.content,
+                createTime: +new Date()
+            })
         }
         this.setState({
             content: ''
