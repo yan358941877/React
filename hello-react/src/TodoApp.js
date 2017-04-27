@@ -3,12 +3,6 @@ import TodoInput from './TodoInput'
 import TodoList from './TodoList'
 
 class TodoApp extends Component {
-    constructor(){
-        super()
-        this.state = {
-            todolist: []
-        }
-    }
 
     _saveTodo(todolist){
         localStorage.setItem('todolist', JSON.stringify(todolist))
@@ -20,6 +14,9 @@ class TodoApp extends Component {
     }
     componentWillMount(){
         let todolist = this._loadTodo()
+        if(!todolist){
+            todolist = []
+        }
         this.setState({
             todolist: todolist
         })

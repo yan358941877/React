@@ -17,12 +17,12 @@ class TodoList extends Component {
         return (
             <div className='TodoList'>
                 {todolist.map(
-                    (todo,index)=><Todo 
+                    (todo,index)=>(<Todo 
                         todo={todo} 
                         key={index} 
                         index={index} 
                         onDelete={this.handleDeleteTodo.bind(this)} 
-                        onFinish={this.handleFinishTodo.bind(this)}/>)}
+                        onFinish={this.handleFinishTodo.bind(this)}/>))}
             </div>
         )
     }
