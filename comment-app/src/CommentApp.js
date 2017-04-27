@@ -9,16 +9,32 @@ class CommentApp extends Component {
             comments: []
         }
     }
+    _loadComments(){
+        let comments = localStorage.getItem('comments')
+        if(comments){
+            comments = JSON.parse(comments)
+            this.setState({
+                comments: comments
+            })
+        }
+    }
+    _saveComments(comments){
+        localStorage.setItem('comments', JSON.stringify(comments))
+    }
+    componentWillMount(){
+        this._loadComments()
+    }
     handleSubmitComment(comment){
  
         if(!comment.username) return alert('请输入用户名')
         if(!comment.content) return alert('请输入评论内容')
 
         let comments = JSON.parse(JSON.stringify(this.state.comments));
-        comments.push(comment);
+        comments.push(comment)
         this.setState({
             comments: comments
-        });
+        })
+        this._saveComments(comments)
     }
     render() {
         return (
