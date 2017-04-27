@@ -25,11 +25,30 @@ class TodoApp extends Component {
             todolist: todolist
         })
     }
+
+    handleDeleteTodo(index){
+        let todolist = JSON.parse(JSON.stringify(this.state.todolist))
+        todolist.splice(index, 1)
+        this.setState({
+            todolist: todolist
+        })
+    }
+
+    handleFinishTodo(index){
+        let todolist = JSON.parse(JSON.stringify(this.state.todolist))
+        todolist[index].finish = true;
+        this.setState({
+            todolist: todolist
+        })
+    }
     render(){
         return (
             <div className='TodoApp'>
                 <TodoInput onSubmit={this.handleAddTodo.bind(this)}/>
-                <TodoList todolist={this.state.todolist}/>
+                <TodoList 
+                    todolist={this.state.todolist} 
+                    onDelete={this.handleDeleteTodo.bind(this)}
+                    onFinish={this.handleFinishTodo.bind(this)}/>
             </div>
         )
     }
