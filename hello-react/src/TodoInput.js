@@ -1,36 +1,39 @@
-import React from "react";
+import React, { Component } from 'react'
 
-class TodoInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.submit = this.submit.bind(this);
-    }
-/*
- * onKeyPress: 事件监听器
- * submit: 事件处理函数
- * defalutValue: 为input元素设置默认初始值,该值只能用一次
- */
-    render() {
-        return ( 
-            <div className = "TodoInput" >
-            <input type = "text"
-            defaultValue = ""
-            onKeyPress = { this.submit }
-            /> 
-            </div >
-        )
-    }
-
-/*
- * this.props.onSubmit是对TodoApp的addTodo方法的引用,调用TodoApp的addTodo方法
- * e.target.value = ''; 将输入框清空
- */ 
-    submit(e) {
-        if (e.key === 'Enter') {
-            this.props.onSubmit.call(null, e);
-            e.target.value = '';
+class TodoInput extends Component {
+    constructor() {
+        super()
+        this.state = {
+            content: ''
         }
+    }
+    handleInputChange(event) {
+        let content = event.target.value
+        this.setState({
+            content: content
+        })
+    }
+    handleSubmit(event) {
+        if (event.which === 13 && this.props.onSubmit) {
+            this.props.onSubmit(this.state.content)
+            this.setState({
+                content: ''
+            })
+        }
+
+    }
+    render() {
+        return (
+            <div className='TodoInput'>
+                <h2>我的代办事项</h2>
+                <input
+                    type="text"
+                    value={this.state.content}
+                    onChange={this.handleInputChange.bind(this)}
+                    onKeyDown={this.handleSubmit.bind(this)} />
+            </div>
+        )
     }
 }
 
-export default TodoInput;
+export default TodoInput
