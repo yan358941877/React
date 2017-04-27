@@ -29,8 +29,16 @@ class CommentApp extends Component {
         if(!comment.username) return alert('请输入用户名')
         if(!comment.content) return alert('请输入评论内容')
 
-        let comments = JSON.parse(JSON.stringify(this.state.comments));
+        let comments = JSON.parse(JSON.stringify(this.state.comments))
         comments.push(comment)
+        this.setState({
+            comments: comments
+        })
+        this._saveComments(comments)
+    }
+    handleDeleteComment(index){
+        const comments = this.state.comments
+        comments.splice(index,1)
         this.setState({
             comments: comments
         })
@@ -40,7 +48,9 @@ class CommentApp extends Component {
         return (
             <div className='wrapper'>
                 <CommentInput onSubmit={this.handleSubmitComment.bind(this)}/>
-                <CommentList comments={this.state.comments}/>
+                <CommentList 
+                    comments={this.state.comments}
+                    onDeleteComment={this.handleDeleteComment.bind(this)}/>
             </div>
         )
     }
