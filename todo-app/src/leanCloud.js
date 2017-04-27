@@ -19,3 +19,38 @@ export function test() {
         alert('leanCloud Rocks!')
     })
 }
+
+export function login(username, password, onSuccess, onError) {
+    AV.User.logIn(username, password).then(function (loginedUser) {
+        let id = loginedUser.id
+        let user_id = loginedUser.attributes.user_id
+        let query = new AV.Query('TodoList')
+        query.equalTo('user_id', user_id)
+        query.find().then(function (results) {
+            //console.log(results[0].attributes.todolist)
+            let todolist = results[0].attributes.todolist
+            onSuccess(username, todolist)
+        }, onError)
+        //console.log(loginedUser)
+    }, onError)
+}
+
+export function signup(username, password, onSuccess, onError) {
+    let user = new AV.User()
+    user.setUsername(username)
+    user.setPassword(password)
+    user.signUp().then(function (loginedUser) {
+        let id = loginedUser.id
+        let user_id = loginedUser.attributes.user_id
+        let todolist = []
+
+        let TodoObject = AV.Object.extend('TodoList')
+        let todoObject = new TodoObject();
+        todoObject.set('user_id', user_id)
+        todoObject.set('todolist', [])
+        todoObject.save().then(function () {
+            onSuccess(username)
+        }, onError);
+
+    }, onError)
+}  

@@ -8,6 +8,7 @@ class TodoApp extends Component {
     constructor(){
         super()
         this.state = {
+            username: '',
             todolist: []
         }
     }
@@ -21,7 +22,7 @@ class TodoApp extends Component {
         return todolist
     }
     componentWillMount(){
-        let todolist = this._loadTodo()
+        let todolist = this._loadTodo()||[]
         this.setState({
             todolist: todolist
         })
@@ -66,16 +67,29 @@ class TodoApp extends Component {
             todolist: todolist
         })
     }
-    render(){
 
+    handleLogin(username, todolist){
+        this.setState({
+            username: username,
+            todolist: todolist
+        })
+    }
+    handleSignup(username){
+        this.setState({
+            username: username,
+            todolist: []
+        })
+    }
+    render(){
+        let dialog = <UserDialog onLogin={this.handleLogin.bind(this)} onSignup={this.handleSignup.bind(this)}/>
         return (
             <div className='TodoApp'>
-                <TodoInput onSubmit={this.handleAddTodo.bind(this)}/>
+                <TodoInput onSubmit={this.handleAddTodo.bind(this)} username={this.state.username}/>
                 <TodoList 
                     todolist={this.state.todolist} 
                     onDelete={this.handleDeleteTodo.bind(this)}
                     onFinish={this.handleFinishTodo.bind(this)}/>
-                <UserDialog />
+                {this.state.username?null:dialog}
             </div>
         )
     }

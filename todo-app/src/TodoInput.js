@@ -25,7 +25,7 @@ class TodoInput extends Component {
     render() {
         return (
             <div className='TodoInput'>
-                <h2>我的代办事项</h2>
+                <h2>{this.props.username}的待办事项</h2>
                 <input
                     type="text"
                     value={this.state.content}
