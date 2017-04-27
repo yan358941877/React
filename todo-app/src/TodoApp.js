@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import TodoInput from './TodoInput'
 import TodoList from './TodoList'
+import AV, {test} from './leanCloud'
 
 class TodoApp extends Component {
     constructor(){
@@ -25,7 +26,7 @@ class TodoApp extends Component {
         })
     }
     componentDidMount(){
-        this._saveTodo(todolist)
+        //this._saveTodo(this.state.todolist)
     }
     handleAddTodo(content){
         if(!content){
@@ -65,6 +66,7 @@ class TodoApp extends Component {
         })
     }
     render(){
+
         return (
             <div className='TodoApp'>
                 <TodoInput onSubmit={this.handleAddTodo.bind(this)}/>
