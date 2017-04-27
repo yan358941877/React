@@ -53,4 +53,33 @@ export function signup(username, password, onSuccess, onError) {
         }, onError);
 
     }, onError)
-}  
+}
+
+export function getCurrentUser(){
+    let user = AV.User.current()
+    if(!user){
+        return 
+    }else {
+        return user.attributes.username
+    }
+}
+export function getCurrentInfo(onSuccess) {
+    let user = AV.User.current()
+    // 如果本地缓存是空的，则直接返回
+    if(!user){
+        return
+    }
+    let id = user.id
+    let username = user.attributes.username
+    let user_id = user.attributes.user_id
+
+    let query = new AV.Query('TodoList')
+    query.equalTo('user_id', user_id)
+    query.find().then(function (results) {
+        //console.log(results[0].attributes.todolist)
+        let todolist = results[0].attributes.todolist
+        onSuccess(username, todolist)
+    }, function(error){
+
+    })
+}

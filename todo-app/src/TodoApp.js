@@ -1,16 +1,17 @@
 import React, {Component} from 'react'
 import TodoInput from './TodoInput'
 import TodoList from './TodoList'
-import AV, {test} from './leanCloud'
+import AV,{getCurrentInfo,getCurrentUser} from './leanCloud'
 import UserDialog from './UserDialog'
 
 class TodoApp extends Component {
     constructor(){
         super()
         this.state = {
-            username: '',
+            username: getCurrentUser(),
             todolist: []
         }
+        this._setState = this._setState.bind(this)
     }
 
     _saveTodo(todolist){
@@ -21,11 +22,14 @@ class TodoApp extends Component {
         todolist = JSON.parse(todolist)
         return todolist
     }
-    componentWillMount(){
-        let todolist = this._loadTodo()||[]
+    _setState(username, todolist){
         this.setState({
+            username: username,
             todolist: todolist
         })
+    }
+    componentWillMount(){
+        getCurrentInfo(this._setState)
     }
     componentDidMount(){
         //this._saveTodo(this.state.todolist)
@@ -81,6 +85,7 @@ class TodoApp extends Component {
         })
     }
     render(){
+        
         let dialog = <UserDialog onLogin={this.handleLogin.bind(this)} onSignup={this.handleSignup.bind(this)}/>
         return (
             <div className='TodoApp'>
