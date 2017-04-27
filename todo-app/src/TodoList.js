@@ -6,9 +6,9 @@ class TodoList extends Component {
             this.props.onDelete(index)
         }
     }
-    handleFinishTodo(index){
+    handleFinishTodo(index, isFinish){
         if(this.props.onFinish){
-            this.props.onFinish(index)
+            this.props.onFinish(index, isFinish)
         }
     }
     render(){

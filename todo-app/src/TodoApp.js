@@ -10,6 +10,20 @@ class TodoApp extends Component {
         }
     }
 
+    _saveTodo(todolist){
+        localStorage.setItem('todolist', JSON.stringify(todolist))
+    }
+    _loadTodo(){
+        let todolist = localStorage.getItem('todolist')
+        todolist = JSON.parse(todolist)
+        return todolist
+    }
+    componentWillMount(){
+        let todolist = this._loadTodo()
+        this.setState({
+            todolist: todolist
+        })
+    }
     handleAddTodo(content){
         if(!content){
             return 
@@ -24,6 +38,7 @@ class TodoApp extends Component {
         this.setState({
             todolist: todolist
         })
+        this._saveTodo(todolist)
     }
 
     handleDeleteTodo(index){
@@ -32,14 +47,22 @@ class TodoApp extends Component {
         this.setState({
             todolist: todolist
         })
+        this._saveTodo(todolist)
     }
 
-    handleFinishTodo(index){
+    handleFinishTodo(index, isFinish){
+        
         let todolist = JSON.parse(JSON.stringify(this.state.todolist))
-        todolist[index].finish = true;
+        if(isFinish){
+            todolist[index].finish = true;
+        }else{
+            todolist[index].finish = false;
+        }
+        
         this.setState({
             todolist: todolist
         })
+        this._saveTodo(todolist)
     }
     render(){
         return (
