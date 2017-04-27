@@ -2,6 +2,7 @@
   "name": "todo-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yan358941877.github.io/React/todo-app/build/",
   "dependencies": {
     "leancloud-storage": "^2.2.1",
     "react": "^15.5.4",
