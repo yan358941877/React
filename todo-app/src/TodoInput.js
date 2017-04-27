@@ -7,6 +7,9 @@ class TodoInput extends Component {
             content: ''
         }
     }
+    componentDidMount(){
+        this.input.focus()
+    }
     handleInputChange(event) {
         let content = event.target.value
         this.setState({
@@ -25,12 +28,13 @@ class TodoInput extends Component {
     render() {
         return (
             <div className='TodoInput'>
-                <h2>{this.props.username}的待办事项</h2>
+                <h2>{this.props.username||'我'}的待办事项</h2>
                 <input
                     type="text"
                     value={this.state.content}
                     onChange={this.handleInputChange.bind(this)}
-                    onKeyDown={this.handleSubmit.bind(this)} />
+                    onKeyDown={this.handleSubmit.bind(this)} 
+                    ref={(input) => this.input = input}/>
             </div>
         )
     }

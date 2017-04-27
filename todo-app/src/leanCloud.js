@@ -19,10 +19,12 @@ export function test() {
         alert('leanCloud Rocks!')
     })
 }
-
+export function test2(todolist) {
+    console.log(todolist)
+}
 export function login(username, password, onSuccess, onError) {
     AV.User.logIn(username, password).then(function (loginedUser) {
-        let id = loginedUser.id
+
         let user_id = loginedUser.attributes.user_id
         let query = new AV.Query('TodoList')
         query.equalTo('user_id', user_id)
@@ -40,9 +42,8 @@ export function signup(username, password, onSuccess, onError) {
     user.setUsername(username)
     user.setPassword(password)
     user.signUp().then(function (loginedUser) {
-        let id = loginedUser.id
+
         let user_id = loginedUser.attributes.user_id
-        let todolist = []
 
         let TodoObject = AV.Object.extend('TodoList')
         let todoObject = new TodoObject();
@@ -55,21 +56,21 @@ export function signup(username, password, onSuccess, onError) {
     }, onError)
 }
 
-export function getCurrentUser(){
+export function getCurrentUser() {
     let user = AV.User.current()
-    if(!user){
-        return 
-    }else {
+    if (!user) {
+        return
+    } else {
         return user.attributes.username
     }
 }
 export function getCurrentInfo(onSuccess) {
     let user = AV.User.current()
     // 如果本地缓存是空的，则直接返回
-    if(!user){
+    if (!user) {
         return
     }
-    let id = user.id
+
     let username = user.attributes.username
     let user_id = user.attributes.user_id
 
@@ -79,7 +80,22 @@ export function getCurrentInfo(onSuccess) {
         //console.log(results[0].attributes.todolist)
         let todolist = results[0].attributes.todolist
         onSuccess(username, todolist)
-    }, function(error){
+    }, function (error) {
 
     })
+}
+export function updateTodo(todolist) {
+    let user = AV.User.current()
+    let user_id = user.attributes.user_id
+    let query = new AV.Query('TodoList')
+    query.equalTo('user_id', user_id)
+    query.find().then(function (results) {
+        let todoid = results[0].id
+        var todoObject = AV.Object.createWithoutData('TodoList', todoid);
+        todoObject.set('todolist', todolist);
+        todoObject.save();
+    }, function (error) {
+
+    })
+
 }

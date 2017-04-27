@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import TodoInput from './TodoInput'
 import TodoList from './TodoList'
-import AV,{getCurrentInfo,getCurrentUser} from './leanCloud'
+import {getCurrentInfo,getCurrentUser,updateTodo,test2} from './leanCloud'
 import UserDialog from './UserDialog'
 
 class TodoApp extends Component {
@@ -30,9 +30,10 @@ class TodoApp extends Component {
     }
     componentWillMount(){
         getCurrentInfo(this._setState)
+        
     }
-    componentDidMount(){
-        //this._saveTodo(this.state.todolist)
+    componentDidUpdate(){
+        updateTodo(this.state.todolist)
     }
     handleAddTodo(content){
         if(!content){
@@ -47,7 +48,7 @@ class TodoApp extends Component {
         todolist.push(todo)
         this.setState({
             todolist: todolist
-        })  
+        })    
     }
 
     handleDeleteTodo(index){
@@ -85,7 +86,6 @@ class TodoApp extends Component {
         })
     }
     render(){
-        
         let dialog = <UserDialog onLogin={this.handleLogin.bind(this)} onSignup={this.handleSignup.bind(this)}/>
         return (
             <div className='TodoApp'>

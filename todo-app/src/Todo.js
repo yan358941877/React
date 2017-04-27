@@ -10,7 +10,7 @@ class Todo extends Component {
     handleFinishTodo() {
         if (this.props.onFinish) {
             if (!this.props.todo.finish) {
-                console.log('完成了！')
+
                 this.props.onFinish(this.props.index, true)
             }else {
                 this.props.onFinish(this.props.index, false)
