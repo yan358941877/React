@@ -30,7 +30,7 @@ export const connect =(mapStateToProps)=> (WrappedComponent) => {
         render(){
             const {store} = this.context
             let stateProps = mapStateToProps(store.getState())
-            return <WrappedComponent {...this.state.allProps} />
+            return <WrappedComponent />
         }
     }
     return Connect

@@ -4,12 +4,13 @@ import './index.css'
 import Header from './Header'
 import Content from './Content'
 
+
 function createStore(reducer){
   let state = null
   const listeners = []
   const subscribe = (listener)=>listeners.push(listener)
   const getState = ()=>state
-  const dispatch = (action)=>{
+  const dispatch = (action) => {
     state = reducer(state, action)
     listeners.forEach((listener)=>listener())
   }
@@ -17,20 +18,17 @@ function createStore(reducer){
   return {getState, dispatch, subscribe}
 }
 
-const themeReducer = (state, action)=>{
+const themeReducer = (state, action)=> {
   if(!state){
-    return {
-      themeColor: 'red'
-    }
+    return {themeColor: 'red'}
   }
   switch(action.type){
     case 'CHANGE_COLOR':
-      return {...state, themeColor: action.themeColor}
+      return {...state,themeColor: action.themeColor}
     default:
       return state
   }
 }
-
 const store = createStore(themeReducer)
 
 class Index extends Component {
@@ -50,6 +48,7 @@ class Index extends Component {
     )
   }
 }
+
 ReactDOM.render(
   <Index />,
   document.getElementById('root')
