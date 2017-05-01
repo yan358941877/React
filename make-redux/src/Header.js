@@ -24,6 +24,7 @@ class Header extends Component {
     //     })
     // }
     render(){
+        console.log('header', this.props)
         return (
             <h1 style={{color: this.props.themeColor}}>Hello React</h1>
         )
