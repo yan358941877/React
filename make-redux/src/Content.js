@@ -2,32 +2,32 @@ import React, {Component, PropTypes} from 'react'
 import ThemeSwitch from './ThemeSwitch'
 import {connect} from './react-redux'
 class Content extends Component {
-    static contextTypes = {
+    static PropTypes = {
         // store: PropTypes.object
-        store: PropTypes.object
+        ThemeColor: PropTypes.string
     }
-    constructor(){
-        super()
-        this.state = {
-            themeColor: ''
-        }
-    }
-    componentWillMount(){
-        const {store} = this.context
-        this._updateThemeColor()
-        store.subscribe(()=>this._updateThemeColor())
-    }
-    _updateThemeColor(){
-        const {store} = this.context
-        const state = store.getState()
-        this.setState({
-            themeColor: state.ThemeColor
-        })
-    }
+    // constructor(){
+    //     super()
+    //     this.state = {
+    //         themeColor: ''
+    //     }
+    // }
+    // componentWillMount(){
+    //     const {store} = this.context
+    //     this._updateThemeColor()
+    //     store.subscribe(()=>this._updateThemeColor())
+    // }
+    // _updateThemeColor(){
+    //     const {store} = this.context
+    //     const state = store.getState()
+    //     this.setState({
+    //         themeColor: state.ThemeColor
+    //     })
+    // }
     render(){
         return (
             <div>
-                <p style={{color: this.state.themeColor}}>React.js</p>
+                <p style={{color: this.props.themeColor}}>React.js</p>
                 <ThemeSwitch />
             </div>
         )
@@ -39,6 +39,6 @@ const mapStateToProps =(state)=>{
         themeColor: state.themeColor
     }
 }
-//Content = connect(mapStateToProps)(Content)
+Content = connect(mapStateToProps)(Content)
 
 export default Content
