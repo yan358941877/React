@@ -19,11 +19,23 @@ export default function (state, action){
         case DELETE_COMMENT:
             return {
                 comments: [
-                    ...state.comments.slice(0, action.commentIndex),
+                    ...state.comments.slice(0, action.commentInde),
                     ...state.comments.slice(action.commentIndex+1)
                 ]
             }
         defalut:
             return state
     }
+}
+
+export const initComments = (comments)=>{
+    return {type: INIT_COMMENTS, comments}
+}
+
+export const addComment = (comment)=> {
+    return {type: ADD_COMMENT, comment}
+}
+
+export const deleteComment = (commentIndex)=>{
+    return {type: DELETE_COMMENT, commentIndex}
 }
