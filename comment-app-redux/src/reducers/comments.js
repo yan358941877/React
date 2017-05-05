@@ -1,29 +1,25 @@
-const INIT_COMMENTS = 'INIT_COMMENTS'
-const ADD_COMMENT = 'ADD_COMMENT'
-const DELETE_COMMENT = 'DELETE_COMMENT'
+const INIT_COMMENTS = "INIT_COMMENTS"
+const ADD_COMMENT = "ADD_COMMENT"
+const DELETE_COMMENT = "DELETE_COMMENT"
 
-export default function (state, action){
+export default function(state, action){
     if(!state){
-        state = {
-            comments: []
-        }
+        state = {comments:[]}
     }
     switch(action.type){
-        // 从localStorage中取出对应的comments
         case INIT_COMMENTS:
             return {comments: action.comments}
         case ADD_COMMENT:
             return {
-                comments: [...state.comments, action.comments]
+                comments: [...state.comments, action.comment]
             }
         case DELETE_COMMENT:
             return {
                 comments: [
-                    ...state.comments.slice(0, action.commentInde),
-                    ...state.comments.slice(action.commentIndex+1)
-                ]
+                    ...state.comments.slice(0,action.commentIndex),
+                    ...state.comments.slice(action.commentIndex+1)]
             }
-        defalut:
+        default:
             return state
     }
 }
@@ -32,7 +28,7 @@ export const initComments = (comments)=>{
     return {type: INIT_COMMENTS, comments}
 }
 
-export const addComment = (comment)=> {
+export const addComment = (comment)=>{
     return {type: ADD_COMMENT, comment}
 }
 
